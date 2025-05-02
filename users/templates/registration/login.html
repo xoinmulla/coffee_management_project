@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 500;
+    }
+
+    .form-control {
+        border: 2px solid #ced4da;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn-login {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-login:hover {
+        background-color: #0056b3;
+    }
+
+    .text-muted a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .text-muted a:hover {
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <h1 class="h3">Login</h1>
+                <p class="text-muted">Access your Coffee Management account</p>
+            </div>
+            <form method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <!-- Username Field -->
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Username</label>
+                    <input type="text" id="id_username" name="username" class="form-control" placeholder="Enter your username" required>
+                    <div class="invalid-feedback">
+                        Please enter your username.
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-3">
+                    <label for="id_password" class="form-label">Password</label>
+                    <input type="password" id="id_password" name="password" class="form-control" placeholder="Enter your password" required>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-login text-white">Login</button>
+                </div>
+            </form>
+            <hr>
+            
+            <p class="text-center text-muted">
+                <a href="{% url 'password_reset' %}">Forgot password?</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Client-side form validation
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+</body>
+</html>
